@@ -1,5 +1,6 @@
 <%@ page import ="java.sql.*" %>
- 
+<%@ page import ="m.DbConn" %>
+
 <%
     String userid = request.getParameter("username");    
     String pwd = request.getParameter("password");

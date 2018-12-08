@@ -7,22 +7,30 @@ package v;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import m.Drink;
+import m.Page;
 
 /**
  * not yet touched
+ *
  * @author enter
  */
-@WebServlet(name = "Data", urlPatterns = {"/Data"})
+@WebServlet(name = "Data", urlPatterns = {"/data/*"})
 public class Data extends HttpServlet {
 
+  Logger logger = Logger.getLogger(Data.class.getName());
+
   /**
-   * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-   * methods.
+   * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
    *
    * @param request servlet request
    * @param response servlet response
@@ -37,7 +45,7 @@ public class Data extends HttpServlet {
       out.println("<!DOCTYPE html>");
       out.println("<html>");
       out.println("<head>");
-      out.println("<title>Servlet Data</title>");      
+      out.println("<title>Servlet Data</title>");
       out.println("</head>");
       out.println("<body>");
       out.println("<h1>Servlet Data at " + request.getContextPath() + "</h1>");
@@ -58,6 +66,7 @@ public class Data extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    RequestHelper.parseReqUrl(request);
     processRequest(request, response);
   }
 
@@ -72,6 +81,7 @@ public class Data extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    RequestHelper.parseReqUrl(request);
     processRequest(request, response);
   }
 
