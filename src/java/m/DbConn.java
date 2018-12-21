@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 public class DbConn {
 
   private final String dbDriverClass = "com.mysql.jdbc.Driver";
-  private final String dbUsername = "fillyourusername";
-  private final String dbPassword = "domakesomepassword";
-  private final String dbUrl = "jdbc:mysql://localhost:3306/dp_perpus?zeroDateTimeBehavior=convertToNull";
+  private final String dbUsername = "root";
+  private final String dbPassword = "coldheart";
+  private final String dbUrl = "jdbc:mysql://localhost:3306/pl_tss?zeroDateTimeBehavior=convertToNull";
   private static Connection connection = null;
 
   public Connection getConnection() {

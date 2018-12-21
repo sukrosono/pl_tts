@@ -1,15 +1,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import = "java.util.logging.Logger" %>
-<%@page import = "java.util.logging.Level" %>
-<%@page import="m.DrinksQ"%>
-<%@page import="m.Drink"%>
-<%@page import="m.Page" %>
+<%@page import="m.FoodsQ"%>
+<%@page import="m.Food"%>
 <%@page import="m.Formater" %>
+<%@page import="m.Page" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-  Logger logger = Logger.getLogger(this.getClass().getName());
-  Page webPage= new Page("Daftar Minuman");
+  Page webPage= new Page("Daftar Makanan");
   Page.Web_Library jq = webPage.new Web_Library();
   jq.css_location = "";
   jq.js_location = "../node_modules/jquery/dist/jquery.min.js";
@@ -25,6 +22,7 @@
   request.setAttribute("webPage", webPage);
   String baseUrl= request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html>
   <jsp:include page="./header/head.title.jsp"/>
@@ -36,12 +34,12 @@
   <body>
     <%
       try {
-        ArrayList<Drink> drinks = DrinksQ.selectAll();
+        ArrayList<Food> food = FoodsQ.selectAll();
     %>
-    <h2>Daftar minuman</h2>
+    <h2>Daftar makanan</h2>
     <div class="atas">
       <table class="list table">
-        <thead class="thead-dark">
+        <thead class="thead-light">
           <tr>
             <th>Name</th>
             <th>Price</th>
@@ -51,18 +49,18 @@
           </tr>
         </thead>
         <%
-          if (!drinks.isEmpty()) {
-            for (Drink d : drinks) {
-              String dashedName= Formater.toDashCase(d.getName());
-              out.print("<td>" + d.getName() + "</td>");
-              out.print("<td>" + d.getPrice() + "</td>");
-              out.print("<td>" + d.getDescription() + "</td>");
+          if (!food.isEmpty()) {
+            for (Food f : food) {
+              String dashedName= Formater.toDashCase(f.getName());
+              out.print("<td>" + f.getName() + "</td>");
+              out.print("<td>" + f.getPrice() + "</td>");
+              out.print("<td>" + f.getDescription() + "</td>");
               out.print("<td><img src='" + 
                       baseUrl+ "/images/upload/"+
-                      d.getPicture_url() + "'/></td>");
+                      f.getPictureUrl() + "'/></td>");
               out.print("<td>");
-              out.print("<a href='"+ baseUrl+"/add/drink/"+ dashedName+"'>edit</a> | ");
-              out.print("<a href='"+ baseUrl+"/delete/drink/"+ dashedName+ "' class='btn btn-danger'>hapus</a>");
+              out.print("<a href='"+ baseUrl+"/add/food/"+ dashedName+"'>edit</a> | ");
+              out.print("<a href='"+ baseUrl+"/delete/food/"+ dashedName+ "' class='btn btn-danger'>hapus</a>");
               out.print("</td>");
               out.print("</tr>");
             }
@@ -77,9 +75,6 @@
     <%
       } catch (Exception E) {
         out.print(E.getMessage());
-        logger.log(Level.SEVERE, E.getMessage());
-        logger.log(Level.SEVERE, E.getStackTrace().toString());
-        E.printStackTrace();
       }
     %>
   </body>

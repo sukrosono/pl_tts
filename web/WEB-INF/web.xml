@@ -1,0 +1,124 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    version="3.0">
+<!--  <icon>
+    <small-icon>
+    <large-icon>
+  </icon>-->
+
+<!--  <display-name>
+  <description>
+  <distributable>-->
+
+<!--  <context-param>
+    <param-name>
+    <param-value>
+    <description>
+  </context-param>-->
+
+<!--  <filter>
+    <icon>
+      <small-icon>
+      <large-icon>
+    </icon>
+    <filter-name>
+    <display-name>
+    <description>
+    <filter-class>
+    <init-param>
+      <param-name>
+      <param-value>
+      <description>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>
+    <url-pattern>
+    <servlet>
+  </filter-mapping>
+
+  <listener>
+    <listener-class>
+  </listener>-->
+
+<!--  <servlet>
+    <icon>
+      <small-icon>
+      <large-icon>
+    </icon>
+    <servlet-name>
+    <display-name>
+    <description>
+    <servlet-class> or <jsp-file>
+    <init-param>
+      <param-name>
+      <param-value>
+      <description>
+    </init-param>
+    <load-on-startup>
+    <security-role-ref>
+      <description>
+      <role-name>
+      <role-link>
+    </security-role-ref>
+  </servlet>-->
+
+<!--  <servlet-mapping>
+    <servlet-name>
+    <url-pattern>
+  </servlet-mapping>
+
+  <session-config>
+    <session-timeout>
+  </session-config>-->
+
+<!--  <mime-mapping>
+    <extension>
+    <mime-type>
+  </mime-mapping>
+
+  <welcome-file-list>
+    <welcome-file>
+  </welcome-file-list>-->
+
+<!--  <error-page>
+    <error-code>
+    <exception-type>
+    <location>
+  </error-page>-->
+
+
+<!--  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>
+      <description>
+      <url-pattern>
+      <http-method>
+    </web-resource-collection>
+    <auth-contraint>
+      <description>
+      <role-name>
+    </auth-constraint>
+    <user-data-contraint>
+      <description>
+      <transport-guarantee>
+    <user-data-contraint>
+  </security-constraint>-->
+
+<!--  <login-config>
+    <auth-method>
+    <realm-name>
+    <form-login-config>
+      <form-login-page>
+      <form-error-page>
+    </form-login-config>
+  </login-config>-->
+
+<!--  <security-role>
+    <description>
+    <role-name>
+  </security-role>-->
+
+</web-app>

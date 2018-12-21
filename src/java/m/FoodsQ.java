@@ -40,6 +40,7 @@ public class FoodsQ {
       statement.setString(1, d.getName());
       statement.setInt(2, d.getPrice());
       statement.setString(3, d.getPictureUrl());
+      statement.setString(4, d.getDescription());
       rowAffected = statement.executeUpdate();
     } catch (SQLException ex) {
       Logger.getLogger(FoodsQ.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,6 +88,8 @@ public class FoodsQ {
       rowAffected = statement.executeUpdate();
     } catch (SQLException e) {
       logger.log(Level.SEVERE, e.toString());
+      logger.log(Level.SEVERE, "cok cok1");
+      e.printStackTrace();
     }
     return rowAffected != 0;
   }

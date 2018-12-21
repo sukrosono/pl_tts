@@ -40,6 +40,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="../add/food">Makanan</a>
               <a class="dropdown-item" href="../add/drink">Minuman</a>
+              <a class="dropdown-item" href="./form_order.jsp">Pesanan</a>
             </div>
           </div>
         </li>
@@ -50,6 +51,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="./index_foods.jsp">Makanan</a>
               <a class="dropdown-item" href="./index_drinks.jsp">Minuman</a>
+              <a class="dropdown-item" href="../pesanan">Pesanan</a>
             </div>
           </div>
         </li>

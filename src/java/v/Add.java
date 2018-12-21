@@ -41,7 +41,7 @@ import m.Formater;
 @MultipartConfig
 public class Add extends HttpServlet {
 
-  Logger logger = Logger.getLogger(Data.class.getName());
+  Logger logger = Logger.getLogger(Pesanan.class.getName());
 
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
   /**
@@ -76,14 +76,21 @@ public class Add extends HttpServlet {
         request.getRequestDispatcher("/view/form_drink.jsp").forward(request, response);
       }
       if (requestedUrl[0].equals("food")) {
-        Food newFood = new Food("");
-//        newFood.setPrice(0);
-        newFood.setDescription("");
-        newFood.setPictureUrl("");
-        request.setAttribute("dataToEdit", newFood);
-//        out.print("before include");
+        Food f = new Food("");
+//        f.setPrice(0);
+        f.setDescription("");
+        f.setPictureUrl("");
+        if (requestedUrl.length > 1) {
+//        add existing data
+          String foodId = Formater.normalize(requestedUrl[1]);
+          logger.log(Level.SEVERE, "foodId is " + foodId);
+          Food existing = FoodsQ.getWhere(foodId);
+          if (existing != null) {
+            f = existing;
+          }
+        }
+        request.setAttribute("dataToEdit", f);
         request.getRequestDispatcher("/view/form_food.jsp").include(request, response);
-//        out.print("i use include");
       }
     }
   }
@@ -152,16 +159,34 @@ public class Add extends HttpServlet {
       try {
         Food f = new Food(request.getParameter("name"));
         f.setPrice(Integer.parseInt(request.getParameter("price")));
-        f.setPictureUrl(request.getParameter("picture_url"));
         f.setDescription(request.getParameter("description"));
-        inserted = FoodsQ.newFood(f);
+        final Part filePart = request.getPart("picture");
+        final String fileName = getFileName(filePart);
+        out = new FileOutputStream(new File(path + File.separator
+                + fileName));
+        filecontent = filePart.getInputStream();
+        int read = 0;
+        final byte[] bytes = new byte[1024];
+        while ((read = filecontent.read(bytes)) != -1) {
+          out.write(bytes, 0, read);
+        }
+//        logger.log(Level.INFO, "New file " + fileName + " created at " + path);
+//        logger.log(Level.INFO, "File{0}being uploaded to {1}",
+//                new Object[]{fileName, path});
+        f.setPictureUrl(fileName);
+        boolean isOnDb = FoodsQ.getWhere(f.getName()) != null;
+        if (isOnDb) {
+          inserted = FoodsQ.update(f.getName(), f);
+        } else {
+          inserted = inserted = FoodsQ.newFood(f);
+        }
       } catch (NumberFormatException e) {
-        context.log("fail insert mk : ", e);
+        context.log("fail insert food : ", e);
       } finally {
         if (inserted) {
-          response.sendRedirect(request.getContextPath());
+          response.sendRedirect(request.getContextPath() + "/view/index_foods.jsp");
         } else {
-          response.sendError(HttpServletResponse.SC_EXPECTATION_FAILED, "fail to insert new student");
+          response.sendError(HttpServletResponse.SC_EXPECTATION_FAILED, "fail to save data");
         }
       }
     }
