@@ -6,7 +6,7 @@ build/web/node_modules/**/
 web/node_modules/**/**/
 web/node_modules/**/**/**/
 web/node_modules/**/**/**/**/
-/dist/
+dist/**/**
 
 
-build/**/
+build/**/**
